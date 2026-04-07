@@ -2,6 +2,7 @@
 
 public enum Statuts
 {
+  Waiting,
   Seedling,
   Growth,
   Flowering,
