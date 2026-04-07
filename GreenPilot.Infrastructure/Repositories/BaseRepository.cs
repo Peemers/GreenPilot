@@ -1,4 +1,5 @@
-﻿using GreenPilot.Core.Interfaces.Repositories;
+﻿using System.Diagnostics.CodeAnalysis;
+using GreenPilot.Core.Interfaces.Repositories;
 using GreenPilot.Domain.Entities;
 using GreenPilot.Infrastructure.DataBase.Context;
 using Microsoft.EntityFrameworkCore;
@@ -6,9 +7,11 @@ using Microsoft.Extensions.Configuration;
 
 namespace GreenPilot.Infrastructure.Repositories;
 
+[SuppressMessage("ReSharper", "InconsistentNaming")]
 public class BaseRepository<T>(GreenPilotDbContext context) : IBaseRepository<T> where T : BaseEntity
 {
-  private DbSet<T> _entities = context.Set<T>();
+  private readonly DbSet<T> _entities = context.Set<T>();
+  protected readonly GreenPilotDbContext context = context;
 
   public async Task<IEnumerable<T>> GetAllAsync()
   {

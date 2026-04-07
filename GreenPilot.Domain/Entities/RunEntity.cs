@@ -14,4 +14,6 @@ public class RunEntity : BaseEntity
   public string UrlPics {get; set; } = string.Empty;
   public DateTime UpdateDate {get; set; }
   public int PlantsNumber {get; set; }
+  public Guid UserId { get; set; }
+  public required UserEntity User { get; set; }
 }

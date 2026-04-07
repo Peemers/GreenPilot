@@ -9,5 +9,5 @@ public class UserEntity : BaseEntity
   public required string Password { get; set; }
   public Roles Role { get; set; }
   
-  ICollection<RunEntity> Runs { get; set; } = new List<RunEntity>();
+  public ICollection<RunEntity> Runs { get; set; } = new List<RunEntity>();
 }
