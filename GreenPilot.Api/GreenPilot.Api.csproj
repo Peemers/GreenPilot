@@ -10,6 +10,7 @@
 
     <ItemGroup>
         <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="10.0.1"/>
+        <PackageReference Include="Microsoft.EntityFrameworkCore" Version="10.0.5" />
         <PackageReference Include="Scalar.AspNetCore" Version="2.13.20" />
     </ItemGroup>
 
@@ -22,6 +23,7 @@
     <ItemGroup>
       <ProjectReference Include="..\GreenPilot.Core\GreenPilot.Core.csproj" />
       <ProjectReference Include="..\GreenPilot.Domain\GreenPilot.Domain.csproj" />
+      <ProjectReference Include="..\GreenPilot.Infrastructure\GreenPilot.Infrastructure.csproj" />
     </ItemGroup>
 
     <ItemGroup>

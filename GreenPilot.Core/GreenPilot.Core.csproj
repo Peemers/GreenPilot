@@ -10,9 +10,4 @@
       <ProjectReference Include="..\GreenPilot.Domain\GreenPilot.Domain.csproj" />
     </ItemGroup>
 
-    <ItemGroup>
-      <Folder Include="Interfaces\Services\" />
-      <Folder Include="Interfaces\Tools\" />
-    </ItemGroup>
-
 </Project>

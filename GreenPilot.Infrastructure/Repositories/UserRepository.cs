@@ -12,4 +12,10 @@ public class UserRepository(GreenPilotDbContext context) : BaseRepository<UserEn
     return await context.Users
       .FirstOrDefaultAsync(u => u.Email == email);
   }
+
+  public async Task<UserEntity?> GetByUsernameAsync(string pseudo)
+  {
+    return await context.Users
+      .FirstOrDefaultAsync(u => u.Pseudo == pseudo);
+  }
 }

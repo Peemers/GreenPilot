@@ -5,4 +5,6 @@ namespace GreenPilot.Core.Interfaces.Repositories;
 public interface IUserRepository : IBaseRepository<UserEntity>
 {
   Task<UserEntity?> GetByEmailAsync(string email);
+  
+  Task<UserEntity?> GetByUsernameAsync(string pseudo);
 }
