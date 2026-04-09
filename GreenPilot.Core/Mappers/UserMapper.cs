@@ -5,14 +5,14 @@ namespace GreenPilot.Core.Mappers;
 
 public static class UserMapper
 {
-  public static UserEntity ToEntity(this RegisterRequestDto dto, string password)
+  public static UserEntity ToEntity(this RegisterRequestDto dto, string hasherPassword)
   {
     return new UserEntity()
     {
       Id = Guid.NewGuid(),
       Pseudo = dto.Pseudo,
       Email = dto.Email,
-      Password = password,
+      Password = hasherPassword
     };
   }
 }
