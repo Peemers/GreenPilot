@@ -1,5 +1,6 @@
 ﻿using GreenPilot.Core.DTOs.RequestDtos.UserRequestDtos;
 using GreenPilot.Core.DTOs.ResponseDtos;
+using GreenPilot.Core.Interfaces.Services;
 using GreenPilot.Core.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -7,7 +8,7 @@ namespace GreenPilot.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-public class AuthControler(AuthService authService) : ControllerBase
+public class AuthController(IAuthService authService) : ControllerBase
 {
   [HttpPost("Register")]
   [EndpointSummary("Register")]
