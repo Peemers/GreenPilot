@@ -25,11 +25,15 @@ public class AuthService(
       log.LogInformation("Invalid login information");
       throw new KeyNotFoundException($"Invalid UserName, Email or Password");
     }
+    
+    string token = jwtService.GenererToken(users);
+    
     return new AuthResponseDto
     {
       Pseudo = dto.Pseudo,
       Id = users.Id,
-      Roles = Roles.Membre
+      Roles = Roles.Membre,
+      Token =  token
     };
   }
 
@@ -53,7 +57,8 @@ public class AuthService(
     {
       Pseudo = dto.Pseudo,
       Id = newUser.Id,
-      Roles = Roles.Membre
+      Roles = Roles.Membre,
+      Token = token
     };
   }
 }
