@@ -1,6 +1,7 @@
 using System.Text;
 using GreenPilot.Core.Interfaces.Repositories;
 using GreenPilot.Core.Interfaces.Tools;
+using GreenPilot.Core.Services;
 using GreenPilot.Infrastructure.DataBase.Context;
 using GreenPilot.Infrastructure.Repositories;
 using GreenPilot.Infrastructure.Security;
@@ -50,6 +51,7 @@ builder.Services.AddCors(option =>
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IHashPassword, HashePassword>();
 builder.Services.AddScoped<IJwtService, JwtService>();
+builder.Services.AddScoped<AuthService>();
 builder.Services.AddControllers();
 builder.Services.AddOpenApi();
 
