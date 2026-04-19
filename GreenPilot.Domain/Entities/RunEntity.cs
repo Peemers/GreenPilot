@@ -13,7 +13,7 @@ public class RunEntity : BaseEntity
   public string Remark {get; set; } = string.Empty;
   public string UrlPics {get; set; } = string.Empty;
   public DateTime UpdateDate {get; set; }
-  public required int PlantsNumber {get; set; }
+  public required int NumberOfPlants {get; set; }
   
   
   

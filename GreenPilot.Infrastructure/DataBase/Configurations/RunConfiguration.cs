@@ -45,7 +45,7 @@ public class RunConfiguration : IEntityTypeConfiguration<RunEntity>
       .HasColumnName("UrlPics")
       .HasMaxLength(2048);
     
-    builder.Property(r => r.PlantsNumber)
+    builder.Property(r => r.NumberOfPlants)
       .IsRequired()
       .HasColumnName("PlantsNumber");
 
