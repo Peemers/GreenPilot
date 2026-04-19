@@ -5,7 +5,7 @@ namespace GreenPilot.Domain.Entities;
 public class RunEntity : BaseEntity
 {
   public required Statuts Statut { get; set; }
-  public required DateTime StartTime { get; set; }
+  public required DateTime StartDate { get; set; }
   public DateTime PlantingDate { get; set; }
   public DateTime EndSeedlingDate { get; set; }
   public DateTime FloweringBeginDate {get; set; }
@@ -18,5 +18,7 @@ public class RunEntity : BaseEntity
   
   
   public Guid UserId { get; set; } //nav
+  
+  public HarvestEntity? Harvest { get; set; }
   public required UserEntity User { get; set; } //nav
 }

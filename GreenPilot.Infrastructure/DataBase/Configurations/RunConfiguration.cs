@@ -21,7 +21,7 @@ public class RunConfiguration : IEntityTypeConfiguration<RunEntity>
       .HasColumnName("Statut")
       .HasMaxLength(25);
     
-    builder.Property(r => r.StartTime )
+    builder.Property(r => r.StartDate )
       .IsRequired()
       .HasColumnName("StartTime");
     
