@@ -22,4 +22,17 @@ public static class RunMappers
       UserId = runEntity.UserId
     };
   }
+
+  public static RunShortResponseDto ToShortResponseDto(this RunEntity runEntity)
+  {
+    return new RunShortResponseDto()
+    {
+      Id = runEntity.Id,
+      Status = runEntity.Statut,
+      StartDate = runEntity.StartDate,
+      PlantingDate = runEntity.PlantingDate,
+      EndDate = runEntity.EndDate,
+      NumberOfPlants = runEntity.NumberOfPlants,
+    };
+  }
 }

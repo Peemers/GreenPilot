@@ -19,5 +19,5 @@ public record RunDetailsResponseDto
 
   public HarvestEntity? Harvest { get; init; }
 
-  public required UserEntity UserId { get; init; }
+  public required Guid UserId { get; init; }
 }
