@@ -1,22 +1,24 @@
 ﻿using GreenPilot.Core.DTOs.RequestDtos.RunRequestDto;
 using GreenPilot.Core.DTOs.ResponseDtos.RunResponseDto;
 using GreenPilot.Domain.Entities;
+using GreenPilot.Domain.Enums;
 
 namespace GreenPilot.Core.Interfaces.Services;
 
 public interface IRunService
 {
-  Task RunStart(Guid id);
-  Task StatusChange(Guid id);
-  Task RunClose(Guid id);
-  Task DeleteRun(Guid id);
+  Task RunStartAsync(Guid id);
+  Task StatusChangeAsync(Guid id);
+  Task RunCloseAsync(Guid id);
+  Task DeleteRunAsync(Guid id);
   Task<IEnumerable<RunShortResponseDto>> GetAllRunsAsync();
-  
-  Task<RunDetailsResponseDto> UpdateRunAsync(RunUpdateRequestDto runUpdateRequest);
-  Task<RunDetailsResponseDto> RunCreateAsync(RunCreateRequestDto runCreateRequest);
-  Task<RunShortResponseDto> GetRunByIdAsync(Guid id);
-  Task<RunPictureResponseDto> AddPicture(Guid id, RunPictureResponseDto dto);
-  Task<RunDetailsResponseDto> GetTenLatest(RunShortResponseDto dto);
+  Task<IEnumerable<RunShortResponseDto>> GetByUserIdAsync(Guid userId);
+  Task<IEnumerable<RunShortResponseDto>> GetByStatusAsync(Statuts statuts);
+  Task<RunDetailsResponseDto> UpdateRunAsync(RunUpdateRequestDto runUpdateRequest, Guid id);
+  Task<RunDetailsResponseDto> RunCreateAsync(RunCreateRequestDto runCreateRequest, Guid userId);
+  Task<RunDetailsResponseDto> GetRunByIdAsync(Guid id);
+  Task<RunPictureResponseDto> AddPictureAsync(Guid id, RunPictureResponseDto dto);
+  Task<IEnumerable<RunShortResponseDto>> GetTenLatestAsync(Guid userId);
   
   
   
