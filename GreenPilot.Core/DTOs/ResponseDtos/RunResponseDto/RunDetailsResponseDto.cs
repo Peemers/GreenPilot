@@ -5,18 +5,19 @@ using GreenPilot.Domain.Enums;
 
 namespace GreenPilot.Core.DTOs.ResponseDtos.RunResponseDto;
 
-public record RunDetailsResponseDto(
-  Guid Id,
-  Statuts Status,
-  DateTime StartDate,
-  DateTime PlantingDate,
-  DateTime EndSeedlingDate,
-  DateTime FloweringBeginDate,
-  DateTime EndDate,
-  string Remark,
-  int PlantsNumber,
-  
-  HarvestEntity? Harvest,
-  UserEntity UserId
-  
-  );
+public record RunDetailsResponseDto
+{
+  public Guid Id { get; init; }
+  public Statuts Status { get; init; }
+  public DateTime StartDate { get; init; }
+  public DateTime PlantingDate { get; init; }
+  public DateTime EndSeedlingDate { get; init; }
+  public DateTime FloweringBeginDate { get; init; }
+  public DateTime EndDate { get; init; }
+  public string Remark { get; init; } = string.Empty;
+  public int NumberOfPlants { get; init; }
+
+  public HarvestEntity? Harvest { get; init; }
+
+  public required UserEntity UserId { get; init; }
+}
