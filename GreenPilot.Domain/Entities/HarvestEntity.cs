@@ -7,5 +7,6 @@ public class HarvestEntity : BaseEntity
   public string? Remark { get; set; }
   public string? FinalAdvice { get; set; }
   
-  public required RunEntity RunId { get; set; }
+  public Guid RunId { get; set; }
+  public required RunEntity Run { get; set; }
 }
