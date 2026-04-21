@@ -53,6 +53,8 @@ builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IHashPassword, HashePassword>();
 builder.Services.AddScoped<IJwtService, JwtService>();
 builder.Services.AddScoped<IAuthService, AuthService>();
+builder.Services.AddScoped<IRunRepository, RunRepository>();
+builder.Services.AddScoped<IRunService, RunService>();
 builder.Services.AddControllers();
 builder.Services.AddOpenApi();
 
