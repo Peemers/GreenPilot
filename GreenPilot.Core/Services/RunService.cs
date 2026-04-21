@@ -14,15 +14,40 @@ public class RunService(
   IRunRepository runRepository,
   ILogger<RunService> logger) : IRunService
 {
-  public Task RunStartAsync(Guid id)
+  #region RunStartAsync
+
+  public async Task RunStartAsync(Guid id)
   {
-    throw new NotImplementedException();
+    RunEntity? run = await runRepository.GetByIdAsync(id);
+    if (run == null)
+    {
+      throw new KeyNotFoundException($"No run found with id {id}");
+    }
+    run.IsFinished = false;
+    await runRepository.UpdateAsync(run);
   }
 
-  public Task StatusChangeAsync(Guid id)
-  {
-    throw new NotImplementedException();
-  }
+  #endregion
+
+  #region StatusChangeAsync
+
+  // public async Task StatusChangeAsync(Guid id)
+  // {
+  //   RunEntity? run = await runRepository.GetByIdAsync(id);
+  //   if (run == null)
+  //   {
+  //     throw new KeyNotFoundException($"No run found with id {id}");
+  //   }
+  //
+  //   if (run.IsFinished)
+  //   {
+  //     throw new Exception("The run is already finished");
+  //   }
+  // }
+
+  #endregion
+
+  #region RunCloseAsync
 
   public async Task RunCloseAsync(Guid id)
   {
@@ -31,8 +56,18 @@ public class RunService(
     {
       throw new KeyNotFoundException($"No run found with id {id}");
     }
-    
+
+    if (run.IsFinished)
+    {
+      throw new Exception("The run is already finished");
+    }
+    run.IsFinished = true;
+    await runRepository.UpdateAsync(run);
   }
+
+  #endregion
+
+  #region DeleteRunAsync
 
   public async Task DeleteRunAsync(Guid id)
   {
@@ -44,11 +79,19 @@ public class RunService(
     await runRepository.DeleteAsync(run);
   }
 
+  #endregion
+
+  #region GetAllRunsAsync
+
   public async Task<IEnumerable<RunShortResponseDto>> GetAllRunsAsync()
   {
     IEnumerable<RunEntity> runs = await runRepository.GetAllAsync();
     return runs.Select(r => r.ToShortResponseDto());
   }
+
+  #endregion
+
+  #region GetByUserIdAsync
 
   public async Task<IEnumerable<RunShortResponseDto>> GetByUserIdAsync(Guid userId)
   {
@@ -56,11 +99,19 @@ public class RunService(
     return runs.Select(r => r.ToShortResponseDto());
   }
 
+  #endregion
+
+  #region GetByStatusAsync
+
   public async Task<IEnumerable<RunShortResponseDto>> GetByStatusAsync(Statuts statuts)
   {
     IEnumerable<RunEntity> runs = await runRepository.GetByStatusAsync(statuts);
     return runs.Select(r => r.ToShortResponseDto());
   }
+
+  #endregion
+
+  #region UpdateRunAsync
 
   public async Task<RunDetailsResponseDto> UpdateRunAsync(RunUpdateRequestDto runUpdateRequest, Guid id)
   {
@@ -74,12 +125,21 @@ public class RunService(
     return run.ToDetailsResponseDto();
   }
 
+  #endregion
+
+  #region CreateRunAsync
+
   public async Task<RunDetailsResponseDto> CreateRunAsync(RunCreateRequestDto runCreateRequest, Guid userId)
   {
     RunEntity newRun = runCreateRequest.ToRunEntity(userId);
     RunEntity result = await runRepository.AddAsync(newRun);
     return result.ToDetailsResponseDto();
   }
+
+  #endregion
+
+  #region GetRunByIdAsync
+
   public async Task<RunDetailsResponseDto> GetRunByIdAsync(Guid id)
   {
     RunEntity? run = await runRepository.GetByIdAsync(id);
@@ -89,6 +149,10 @@ public class RunService(
     }
     return run.ToDetailsResponseDto();
   }
+
+  #endregion
+
+  #region AddPictureAsync
 
   public async Task<RunDetailsResponseDto> AddPictureAsync(Guid id, RunPictureRequestDto dto)
   {
@@ -103,9 +167,15 @@ public class RunService(
     return run.ToDetailsResponseDto();
   }
 
+  #endregion
+
+  #region GetTenLatestAsync
+
   public async Task<IEnumerable<RunShortResponseDto>> GetTenLatestAsync(Guid userId)
   {
     IEnumerable<RunEntity> runs = await runRepository.GetTenLatestAsync();
     return runs.Select(r => r.ToShortResponseDto());
   }
+
+  #endregion
 }
