@@ -50,4 +50,15 @@ public static class RunMappers
       User = null!
     };
   }
+
+  public static void UpdateEntity(this RunEntity runEntity, RunUpdateRequestDto dto)
+  {
+    runEntity.Statut = dto.Status;
+    runEntity.PlantingDate = dto.PlantingDate;
+    runEntity.EndSeedlingDate = dto.EndSeedlingDate;
+    runEntity.FloweringBeginDate = dto.FloweringBeginDate;
+    runEntity.EndDate = dto.EndDate;
+    runEntity.Remark = dto.Remark;
+    runEntity.UpdateDate = DateTime.UtcNow;
+  }
 }

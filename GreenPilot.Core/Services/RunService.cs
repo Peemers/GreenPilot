@@ -51,14 +51,22 @@ public class RunService(
     return runs.Select(r => r.ToShortResponseDto());
   }
 
-  public Task<IEnumerable<RunShortResponseDto>> GetByStatusAsync(Statuts statuts)
+  public async Task<IEnumerable<RunShortResponseDto>> GetByStatusAsync(Statuts statuts)
   {
-    throw new NotImplementedException();
+    IEnumerable<RunEntity> runs = await runRepository.GetByStatusAsync(statuts);
+    return runs.Select(r => r.ToShortResponseDto());
   }
 
-  public Task<RunDetailsResponseDto> UpdateRunAsync(RunUpdateRequestDto runUpdateRequest, Guid id)
+  public async Task<RunDetailsResponseDto> UpdateRunAsync(RunUpdateRequestDto runUpdateRequest, Guid id)
   {
-    throw new NotImplementedException();
+    RunEntity? run = await runRepository.GetByIdAsync(id);
+    if (run == null)
+    {
+      throw new KeyNotFoundException($"No run found with id {id}");
+    }
+    run.UpdateEntity(runUpdateRequest);
+    await runRepository.UpdateAsync(run);
+    return run.ToDetailsResponseDto();
   }
 
   public async Task<RunDetailsResponseDto> CreateRunAsync(RunCreateRequestDto runCreateRequest, Guid userId)
