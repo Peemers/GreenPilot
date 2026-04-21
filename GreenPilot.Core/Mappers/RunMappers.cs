@@ -1,4 +1,5 @@
-﻿using GreenPilot.Core.DTOs.ResponseDtos.RunResponseDto;
+﻿using GreenPilot.Core.DTOs.RequestDtos.RunRequestDto;
+using GreenPilot.Core.DTOs.ResponseDtos.RunResponseDto;
 using GreenPilot.Domain.Entities;
 using GreenPilot.Domain.Enums;
 
@@ -33,6 +34,20 @@ public static class RunMappers
       PlantingDate = runEntity.PlantingDate,
       EndDate = runEntity.EndDate,
       NumberOfPlants = runEntity.NumberOfPlants,
+    };
+  }
+
+  public static RunEntity ToRunEntity(this RunCreateRequestDto dto, Guid userId)
+  {
+    return new RunEntity()
+    {
+      Id =  dto.Id,
+      Statut = dto.Statut,
+      StartDate = DateTime.UtcNow,
+      Remark =  dto.Remark,
+      NumberOfPlants = dto.NumberOfPlants,
+      UserId = userId,
+      User = null!
     };
   }
 }

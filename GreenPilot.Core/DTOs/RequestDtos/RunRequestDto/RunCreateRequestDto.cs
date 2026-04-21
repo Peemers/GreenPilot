@@ -5,6 +5,9 @@ namespace GreenPilot.Core.DTOs.RequestDtos.RunRequestDto;
 
 public record RunCreateRequestDto
 {
+  [Required(ErrorMessage = "Un id est requis")]
+  public Guid Id { get; init; }
+  
   [Required(ErrorMessage = "Il faut définir un statut")]
   public Statuts Statut { get; init; }
 
