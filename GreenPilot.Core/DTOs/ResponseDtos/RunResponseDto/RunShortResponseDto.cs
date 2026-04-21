@@ -10,4 +10,5 @@ public record RunShortResponseDto
   public DateTime PlantingDate { get; init; }
   public DateTime EndDate { get; init; }
   public int NumberOfPlants { get; init; }
+  public bool IsFinished { get; init; }
 }

@@ -32,4 +32,14 @@ public class RunRepository(GreenPilotDbContext context) : BaseRepository<RunEnti
       .ToListAsync();
   }
   
+  public async Task<IEnumerable<RunEntity>> GetTenLatestAsync()
+  {
+    return await context.Runs
+      .Include(r => r.Harvest)
+      .Include(r => r.User)
+      .OrderByDescending(r => r.StartDate)
+      .Take(10)
+      .ToListAsync();
+
+  }
 }

@@ -14,8 +14,7 @@ public class RunEntity : BaseEntity
   public string UrlPics {get; set; } = string.Empty;
   public DateTime UpdateDate {get; set; }
   public required int NumberOfPlants {get; set; }
-  
-  
+  public bool IsFinished {get; set; }
   
   public Guid UserId { get; set; } //nav
   

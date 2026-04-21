@@ -17,7 +17,7 @@ public interface IRunService
   Task<RunDetailsResponseDto> UpdateRunAsync(RunUpdateRequestDto runUpdateRequest, Guid id);
   Task<RunDetailsResponseDto> CreateRunAsync(RunCreateRequestDto runCreateRequest, Guid userId);
   Task<RunDetailsResponseDto> GetRunByIdAsync(Guid id);
-  Task<RunPictureResponseDto> AddPictureAsync(Guid id, RunPictureResponseDto dto);
+  Task<RunDetailsResponseDto> AddPictureAsync(Guid id, RunPictureRequestDto dto);
   Task<IEnumerable<RunShortResponseDto>> GetTenLatestAsync(Guid userId);
   
   

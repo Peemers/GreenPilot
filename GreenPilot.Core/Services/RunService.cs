@@ -24,9 +24,14 @@ public class RunService(
     throw new NotImplementedException();
   }
 
-  public Task RunCloseAsync(Guid id)
+  public async Task RunCloseAsync(Guid id)
   {
-    throw new NotImplementedException();
+    RunEntity? run = await runRepository.GetByIdAsync(id);
+    if (run == null)
+    {
+      throw new KeyNotFoundException($"No run found with id {id}");
+    }
+    
   }
 
   public async Task DeleteRunAsync(Guid id)
@@ -75,18 +80,32 @@ public class RunService(
     RunEntity result = await runRepository.AddAsync(newRun);
     return result.ToDetailsResponseDto();
   }
-  public Task<RunDetailsResponseDto> GetRunByIdAsync(Guid id)
+  public async Task<RunDetailsResponseDto> GetRunByIdAsync(Guid id)
   {
-    throw new NotImplementedException();
+    RunEntity? run = await runRepository.GetByIdAsync(id);
+    if (run == null)
+    {
+      throw new KeyNotFoundException($"No run found with id {id}");
+    }
+    return run.ToDetailsResponseDto();
   }
 
-  public Task<RunPictureResponseDto> AddPictureAsync(Guid id, RunPictureResponseDto dto)
+  public async Task<RunDetailsResponseDto> AddPictureAsync(Guid id, RunPictureRequestDto dto)
   {
-    throw new NotImplementedException();
+    RunEntity? run = await runRepository.GetByIdAsync(id);
+    if (run == null)
+    {
+      throw new KeyNotFoundException($"No run found with id {id}");
+    }
+    run.ToEntityUpdatePics(dto);
+    await runRepository.UpdateAsync(run);
+    
+    return run.ToDetailsResponseDto();
   }
 
-  public Task<IEnumerable<RunShortResponseDto>> GetTenLatestAsync(Guid userId)
+  public async Task<IEnumerable<RunShortResponseDto>> GetTenLatestAsync(Guid userId)
   {
-    throw new NotImplementedException();
+    IEnumerable<RunEntity> runs = await runRepository.GetTenLatestAsync();
+    return runs.Select(r => r.ToShortResponseDto());
   }
 }

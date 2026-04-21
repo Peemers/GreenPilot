@@ -17,14 +17,14 @@ public class BaseRepository<T>(GreenPilotDbContext context) : IBaseRepository<T>
   {
     return await _entities.AsNoTracking().ToListAsync();
   }
-
+  
   public async Task<T?> GetByIdAsync(Guid id)
   {
     return await _entities.FindAsync(id);
   }
 
   public async Task<T> AddAsync(T entity)
-  { 
+  {
     await _entities.AddAsync(entity);
     await context.SaveChangesAsync();
     return entity;

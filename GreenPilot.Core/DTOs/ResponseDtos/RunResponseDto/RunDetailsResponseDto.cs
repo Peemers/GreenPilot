@@ -14,6 +14,9 @@ public record RunDetailsResponseDto
   public DateTime EndSeedlingDate { get; init; }
   public DateTime FloweringBeginDate { get; init; }
   public DateTime EndDate { get; init; }
+  public bool IsFinished { get; init; }
+  
+  public string UrlPics { get; init; } = string.Empty;
   public string Remark { get; init; } = string.Empty;
   public int NumberOfPlants { get; init; }
 

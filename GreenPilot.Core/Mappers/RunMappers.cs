@@ -20,7 +20,8 @@ public static class RunMappers
       EndDate = runEntity.EndDate,
       Remark = runEntity.Remark,
       NumberOfPlants = runEntity.NumberOfPlants,
-      UserId = runEntity.UserId
+      UserId = runEntity.UserId,
+      IsFinished =  runEntity.IsFinished,
     };
   }
 
@@ -34,6 +35,7 @@ public static class RunMappers
       PlantingDate = runEntity.PlantingDate,
       EndDate = runEntity.EndDate,
       NumberOfPlants = runEntity.NumberOfPlants,
+      IsFinished =  runEntity.IsFinished,
     };
   }
 
@@ -46,6 +48,7 @@ public static class RunMappers
       StartDate = DateTime.UtcNow,
       Remark =  dto.Remark,
       NumberOfPlants = dto.NumberOfPlants,
+      IsFinished = false,
       UserId = userId,
       User = null!
     };
@@ -59,6 +62,12 @@ public static class RunMappers
     runEntity.FloweringBeginDate = dto.FloweringBeginDate;
     runEntity.EndDate = dto.EndDate;
     runEntity.Remark = dto.Remark;
+    runEntity.IsFinished = dto.IsFinished;
     runEntity.UpdateDate = DateTime.UtcNow;
+  }
+
+  public static void ToEntityUpdatePics(this RunEntity runEntity, RunPictureRequestDto dto)
+  {
+    runEntity.UrlPics = dto.UrlPics;
   }
 }

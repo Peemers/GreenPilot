@@ -11,4 +11,6 @@ public interface IRunRepository : IBaseRepository<RunEntity>
 
   Task<IEnumerable<RunEntity>> GetByStatusAsync(Statuts statuts);
 
+  Task<IEnumerable<RunEntity>> GetTenLatestAsync();
+
 }
