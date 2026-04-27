@@ -16,7 +16,7 @@ public class RunService(
 {
   #region RunStartAsync
 
-  public async Task RunStartAsync(Guid id)
+  public async Task<RunDetailsResponseDto> RunStartAsync(Guid id)
   {
     RunEntity? run = await runRepository.GetByIdAsync(id);
     if (run == null)
@@ -25,6 +25,7 @@ public class RunService(
     }
     run.IsFinished = false;
     await runRepository.UpdateAsync(run);
+    return run.ToDetailsResponseDto();
   }
 
   #endregion
@@ -176,6 +177,5 @@ public class RunService(
     IEnumerable<RunEntity> runs = await runRepository.GetTenLatestAsync();
     return runs.Select(r => r.ToShortResponseDto());
   }
-
   #endregion
 }

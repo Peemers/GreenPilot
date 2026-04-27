@@ -7,7 +7,7 @@ namespace GreenPilot.Core.Interfaces.Services;
 
 public interface IRunService
 {
-  Task RunStartAsync(Guid id);
+  Task<RunDetailsResponseDto> RunStartAsync(Guid id);
   // Task StatusChangeAsync(Guid id); //todo A voir si je garde
   Task RunCloseAsync(Guid id);
   Task DeleteRunAsync(Guid id);
